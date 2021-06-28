@@ -1,0 +1,51 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fdf6e3;
+  color: #586e75;
+  height: 100%;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #eee8d5;
+  border-bottom: 1px solid #93a1a1;
+}
+
+#container {
+  display: grid;
+  width: 50vw;
+  margin: 10px auto;
+  border: 1px solid #93a1a1;
+  height: 80vh;
+  grid-template-rows: 1.5em;
+  grid-template-columns: repeat(5, 63px);
+}
+
+
+
+/*
+#container {
+  width: 50vw;
+  margin: 10px auto;
+  border: 1px solid #93a1a1;
+  height: 80vh;
+}
+
+#column-info {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #93a1a1;
+}
+
+.book-entry {
+  display: flex;
+  justify-content: space-around;
+}
+*/
