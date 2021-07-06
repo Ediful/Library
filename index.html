@@ -8,18 +8,41 @@
 <body>
 	<div id='header'>
 		<h1>Library Project</h1>
-		<input type="button" name="add-book" value='Add Book'>
+		<input type="button" id='add-book' value='Add Book'>
 	</div>
-	<div id='container'>
-		<!--
-    <div id="column-info">
-      <p>Title</p>
-      <p>Author</p>
-      <p>Pages</p>
-      <p>Read?</p>
-    </div>
-    <div id="bookslist"></div>
-    -->
+
+	<div id="container">
+		<table>
+			<tr>
+				<th></th>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Pages</th>
+				<th>Read</th>
+			</tr>
+		</table>
+	</div>
+
+  <div id="modal">
+  	<div id="book-form">
+      <span id='close' class="close">&times;</span>
+  		<form>
+  			<h1>New Book</h1>
+  			<label for="title"><b>Title</b></label>
+  			<input type="text" id='title' placeholder="Enter Title">
+        <br>
+  			<label for="author"><b>Author</b></label>
+  			<input type="text" id="author" placeholder="Enter Author">
+        <br>
+  			<label for="pages"><b>Pages</b></label>
+  			<input type="number" id="pages" placeholder="Enter Pages">
+        <br>
+        <label for="read-status">Have you read yet?</label>
+        <input type="checkbox" id="read-status">
+				<br>
+  			<input type="button" id="submit" value="Submit">
+  		</form>
+  	</div>
   </div>
 	<script src='script.js'></script>
 </body>
