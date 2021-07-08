@@ -2,48 +2,43 @@
 <html>
 <head>
 	<meta charset='utf-8'>
-	<title>Library</title>
+	<title>My Reading List</title>
+	<link rel="icon" href="book.png">
 	<link rel='stylesheet' href='styles.css'>
 </head>
 <body>
-	<div id='header'>
-		<h1>Library Project</h1>
+	<header id='header'>
+		<h1>My Reading List</h1>
 		<input type="button" id='add-book' value='Add Book'>
-	</div>
+	</header>
 
-	<div id="container">
-		<table>
-			<tr>
-				<th></th>
-				<th>Title</th>
-				<th>Author</th>
-				<th>Pages</th>
-				<th>Read</th>
-			</tr>
-		</table>
-	</div>
+	<table id="table">
+		<tr>
+			<th class='col0'></th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Pages</th>
+			<th class="col4">Read</th>
+		</tr>
+	</table>
 
-  <div id="modal">
-  	<div id="book-form">
-      <span id='close' class="close">&times;</span>
-  		<form>
-  			<h1>New Book</h1>
-  			<label for="title"><b>Title</b></label>
-  			<input type="text" id='title' placeholder="Enter Title">
-        <br>
-  			<label for="author"><b>Author</b></label>
-  			<input type="text" id="author" placeholder="Enter Author">
-        <br>
-  			<label for="pages"><b>Pages</b></label>
-  			<input type="number" id="pages" placeholder="Enter Pages">
-        <br>
-        <label for="read-status">Have you read yet?</label>
-        <input type="checkbox" id="read-status">
-				<br>
-  			<input type="button" id="submit" value="Submit">
-  		</form>
-  	</div>
-  </div>
+	<form id="form">
+		<button id='close' class="close">&times;</button>
+		<h2>New Book</h2>
+		<label for="title"><b>Title</b></label>
+		<input type="text" id='title' name="title">
+		
+		<label for="author"><b>Author</b></label>
+		<input type="text" id="author">
+		
+		<label for="pages"><b>Pages</b></label>
+		<input type="number" id="pages">
+		
+		<label><b>Have you read yet?</b><input type="checkbox" id="read"></label>
+		
+		<input type="button" id="submit" value="Submit">
+	</form>
+
 	<script src='script.js'></script>
 </body>
 </html>

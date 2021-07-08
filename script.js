@@ -1,85 +1,28 @@
-function openForm() {
-  form.style.display = "block";
-}
+let Library = [];
+/*
+// Used for testing purposes prior to local storage being implemented
+Library[0] = {title:"The Hobbit", author:"J.R.R. Tolkien", pages:309, read:false};
+Library[1] = {title:"Harry Potter and the Sorcerer's Stone", author:"J.K. Rowling", pages:310, read:false};
+Library[2] = {title:"A Game of Thrones", author:"George R.R. Martin", pages:694, read:true};
+*/
+loadLibrary();
 
-function closeForm() {
-  form.style.display = "none";
-}
+document.getElementById('add-book').addEventListener('click', () => form.style.display = "block");
+document.getElementById('close').addEventListener('click', () => form.style.display = "none");
+document.getElementById('submit').addEventListener('click', submitForm);
+displayLibrary();
 
-function resetForm() {
-  document.getElementById('title').value = '';
-  document.getElementById('author').value = '';
-  document.getElementById('pages').value = '';
-  document.getElementById('read-status').checked = false;
-}
-
-function submitForm() {
-  let title = document.getElementById('title');
-  let author = document.getElementById('author');
-  let pages = document.getElementById('pages');
-  let readStatus = document.getElementById('read-status');
-  if(title.value.length === 0 || author.value.length === 0 || pages.value == '') {
-    alert("Please fill empty fields");
-    return;
+// constructs book object using form data
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = form.title.value;
+    this.author = form.author.value;
+    this.pages = form.pages.value;
+    this.read = form.read.checked;
   }
-  let newBook = new Book(title.value, author.value, pages.value, readStatus.checked);
-  Library.push(newBook);
-  storeLibrary();
-  closeForm();
-  resetForm();
-  newBook.display();
 }
 
-function deleteRow() {
-  let i = this.parentNode.parentNode.rowIndex;
-  table.deleteRow(i);
-  Library.reverse().splice(i-1, 1);
-  storeLibrary();
-}
-
-function toggleStatus() {
-  // change status of Book on this row
-  let i = this.parentNode.parentNode.rowIndex;
-  Library[i-1].read = this.checked;
-}
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
-
-Book.prototype.display = function() {
-  let row = table.insertRow(1);
-  let cell0 = row.insertCell(0);
-  let cell1 = row.insertCell(1);
-  let cell2 = row.insertCell(2);
-  let cell3 = row.insertCell(3);
-  let cell4 = row.insertCell(4);
-
-  let delBtn = document.createElement('span');
-  delBtn.className = 'close delete';
-  delBtn.textContent = '\u00d7';
-  cell0.appendChild(delBtn);
-  delBtn.addEventListener('click', deleteRow);
-
-  cell1.textContent = this.title;
-  cell2.textContent = this.author;
-  cell3.textContent = this.pages;
-
-  let rdBtn = document.createElement('input');
-  rdBtn.type = 'checkbox';
-  if (this.read === true) {
-    rdBtn.checked = true;
-  }
-  else {
-    rdBtn.checked = false;
-  }
-  cell4.appendChild(rdBtn);
-  rdBtn.addEventListener('change', toggleStatus);
-}
-
+// store library to local storage
 function storeLibrary() {
   localStorage.setItem("library", JSON.stringify(Library));
 }
@@ -90,27 +33,63 @@ function loadLibrary() {
     Library = JSON.parse(localStorage.getItem("library"));
   }
 }
-// maybe use approach where entire table (excpet for top row maybe) is deleted and rebuild it
-// use loop to create book object for each book in library 
-// alter book.display to not actually use methods and just use a normal function
-const table = document.querySelector('table');
-const form = document.getElementById('modal');
 
-let Library = [];
-loadLibrary();
-
-document.getElementById('add-book').addEventListener('click', openForm);
-
-document.getElementById('close').addEventListener('click', closeForm);
-
-document.getElementById('submit').addEventListener('click', submitForm);
-
-window.onclick = function(event) {
-  if (event.target == form) {
-    closeForm();
-  }
+// Adds new book to library and displays the new library
+function submitForm() {
+  form.style.display = "none";
+  let newBook = new Book(title, author, pages, read);
+  Library.push(newBook);
+  storeLibrary();
+  displayLibrary();
+  form.reset();
 }
 
-Library.forEach(book => {
-  book.display();
-});
+// clears all book entries from table and then displays each book in library
+function displayLibrary () {
+  const books = document.querySelectorAll('.book');
+  books.forEach((book) => {
+    book.remove();
+  });
+
+  Library.forEach(item => displayBook(item));
+}
+
+// creates a new row in the table for the new book
+function displayBook (item) {
+  const table = document.getElementById('table');
+  let row = table.insertRow(1);
+  row.className = "book";
+
+  let cell0 = row.insertCell(0);
+  let cell1 = row.insertCell(1);
+  let cell2 = row.insertCell(2);
+  let cell3 = row.insertCell(3);
+  let cell4 = row.insertCell(4);
+
+  let delBtn = document.createElement('input');
+  delBtn.type = 'button';
+  delBtn.className = 'delete';
+  delBtn.value = '\u00d7';
+  cell0.appendChild(delBtn);
+  delBtn.addEventListener('click', () => {
+    Library.splice(Library.indexOf(item),1);
+    storeLibrary();
+    displayLibrary();
+  });
+
+  cell0.className = 'col0';
+  cell1.textContent = item.title;
+  cell2.textContent = item.author;
+  cell3.textContent = item.pages;
+  cell4.className = 'col4';
+  
+  let rdBtn = document.createElement('input');
+  rdBtn.type = 'checkbox';
+  item.read ? rdBtn.checked = true : rdBtn.checked = false;
+  cell4.appendChild(rdBtn);
+  rdBtn.addEventListener('change', () => {
+    Library[Library.indexOf(item)].read = rdBtn.checked;
+    storeLibrary();
+    displayLibrary();
+  });
+}
