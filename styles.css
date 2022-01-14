@@ -3,9 +3,10 @@
   padding: 0px;
 }
 
-html, body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #B9E3C6;
+html,
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #b9e3c6;
   color: #14213d;
   height: 100%;
   font-size: 16px;
@@ -18,10 +19,10 @@ html, body {
 }
 
 #add-book {
-  background-color: #FFFD98;
-  border: 3px solid #14213D;
+  background-color: #fffd98;
+  border: 3px solid #14213d;
   border-radius: 5px;
-  color: #14213D;
+  color: #14213d;
   font-size: 16px;
   font-weight: bold;
   padding: 0.5em;
@@ -57,7 +58,7 @@ td {
 #form {
   display: none; /* Hidden by default */
   position: absolute;
-  background-color: #FF729F;
+  background-color: #ff729f;
   top: 0;
   right: 0;
   margin: 0.6em;
@@ -74,38 +75,38 @@ label {
   padding: 0.7em 0 0.1em 0;
 }
 
-input[type=text] {
-  background-color: #DCABB3;
-  color: #14213D;
+input[type="text"] {
+  background-color: #dcabb3;
+  color: #14213d;
   font-size: 16px;
   height: 1.5em;
-  border: 2px solid #14213D;
+  border: 2px solid #14213d;
   border-radius: 5px;
   padding-left: 0.25em;
 }
 
-input[type=text]:focus {
+input[type="text"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px #ff9cbc;
 }
 
-input[type=number] {
-  background-color: #DCABB3;
-  color: #14213D;
+input[type="number"] {
+  background-color: #dcabb3;
+  color: #14213d;
   width: 3em;
   font-size: 16px;
   height: 1.5em;
-  border: 2px solid #14213D;
+  border: 2px solid #14213d;
   border-radius: 5px;
   padding-left: 0.25em;
 }
 
-input[type=number]:focus {
+input[type="number"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px #ff9cbc;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   transform: scale(1.5);
 }
 
@@ -117,11 +118,11 @@ input::-webkit-inner-spin-button {
   margin-left: 1em;
 }
 
-#submit {
-  background-color: #FFFD98;
-  border: 3px solid #14213D;
+button {
+  background-color: #fffd98;
+  border: 3px solid #14213d;
   border-radius: 5px;
-  color: #14213D;
+  color: #14213d;
   font-size: 16px;
   font-weight: bold;
   padding: 0.5em;
@@ -155,14 +156,14 @@ input::-webkit-inner-spin-button {
   top: 0.05em;
   background-color: transparent;
   border: none;
-  color: #FFFD98;
+  color: #fffd98;
   float: right;
   font-size: 32px;
   font-weight: bold;
 }
 
 .close:hover {
-  color: #14213D;
+  color: #14213d;
   text-decoration: none;
   cursor: pointer;
 }
@@ -171,13 +172,13 @@ input::-webkit-inner-spin-button {
   background-color: transparent;
   float: right;
   border: none;
-  color: #FFFD98;
+  color: #fffd98;
   font-size: 32px;
   font-weight: bold;
 }
 
 .delete:hover {
-  color: #14213D;
+  color: #14213d;
   text-decoration: none;
   cursor: pointer;
 }
